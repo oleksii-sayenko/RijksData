@@ -10,6 +10,10 @@ protocol ArtObjectCategoriesViewModelProtocol {
     func loadMoreData()
 }
 
+protocol ArtObjectCategoriesViewModelDelegate: AnyObject {
+    func objectDidSlect(_ objectNumber: String)
+}
+
 final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
     enum State {
         case initial
@@ -30,6 +34,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
     }
 
     private let requestManager: APIRequestManager
+    weak var delegate: ArtObjectCategoriesViewModelDelegate?
 
     private let maker: String
     private var page = -1
@@ -62,8 +67,10 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
 
         let lowerBound = min((page + 1) * pageSize, techniques.count)
 
-        let categoryViewModels = techniques[page * pageSize..<lowerBound].map {
-            ArtObjectCategoryViewModel(requestManager: requestManager, maker: maker, technique: $0.key)
+        let categoryViewModels: [ArtObjectCategoryViewModel] = techniques[page * pageSize..<lowerBound].map {
+            let viewModel = ArtObjectCategoryViewModel(requestManager: requestManager, maker: maker, technique: $0.key)
+            viewModel.delegate = self
+            return viewModel
         }
         self.items.append(contentsOf: categoryViewModels)
 
@@ -92,6 +99,12 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
                 self.state = .initialLoadingError(error)
             }
         }
+    }
+}
+
+extension ArtObjectCategoriesViewModel: ArtObjectCategoryViewModelDelegate {
+    func objectDidSlect(_ objectNumber: String) {
+        delegate?.objectDidSlect(objectNumber)
     }
 }
 

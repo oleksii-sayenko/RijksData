@@ -10,6 +10,11 @@ protocol ArtObjectCategoryViewModelProtocol: Hashable, AnyObject {
     var statePublisher: AnyPublisher<ArtObjectCategoryViewModel.State, Never> { get }
     func loadInitialData()
     func loadMoreData()
+    func ojectDidSelect(_ objectNumber: String)
+}
+
+protocol ArtObjectCategoryViewModelDelegate: AnyObject {
+    func objectDidSlect(_ objectNumber: String)
 }
 
 final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
@@ -30,6 +35,8 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
     }
 
     private let requestManager: APIRequestManager
+    weak var delegate: ArtObjectCategoryViewModelDelegate?
+
     private var page = 0
     private let pageSize = 10 // TODO: Magic number
     private let maker: String
@@ -82,6 +89,10 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
                 self.page -= 1
             }
         }
+    }
+
+    func ojectDidSelect(_ objectNumber: String) {
+        delegate?.objectDidSlect(objectNumber)
     }
 }
 

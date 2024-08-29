@@ -4,6 +4,7 @@ import NetworkCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var appCoordinator: ArtObjectsCollectionCoordinator?
 
     func scene(
         _ scene: UIScene,
@@ -15,13 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         window = .init(windowScene: scene)
+        let navigationController = UINavigationController()
 
-        let viewController = ArtObjectCategoriesViewController()
-        let requestManager = ServiceProvider.shared.apiRequestManager
-        let viewModel = ArtObjectCategoriesViewModel(requestManager: requestManager, maker: "Rembrandt van Rijn")
-        viewController.configure(with: viewModel)
+        appCoordinator = ArtObjectsCollectionCoordinator(navigationController: navigationController)
+        appCoordinator?.start()
 
-        window?.rootViewController = UINavigationController(rootViewController: viewController)
+//        let viewController = ArtObjectCategoriesViewController()
+//        let requestManager = ServiceProvider.shared.apiRequestManager
+//        let viewModel = ArtObjectCategoriesViewModel(requestManager: requestManager, maker: "Rembrandt van Rijn")
+//        viewController.configure(with: viewModel)
+
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }

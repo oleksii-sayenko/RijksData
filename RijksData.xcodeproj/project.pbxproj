@@ -32,6 +32,8 @@
 		949FFC6E2C7FEBE50068ED72 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC6D2C7FEBE50068ED72 /* AppConfiguration.swift */; };
 		949FFC722C7FEC760068ED72 /* MainInfoPListProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC712C7FEC760068ED72 /* MainInfoPListProperty.swift */; };
 		949FFC752C7FED6B0068ED72 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC742C7FED6B0068ED72 /* ServiceProvider.swift */; };
+		949FFC7D2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */; };
+		949FFC802C8015500068ED72 /* ArtObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		949FFC6D2C7FEBE50068ED72 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		949FFC712C7FEC760068ED72 /* MainInfoPListProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoPListProperty.swift; sourceTree = "<group>"; };
 		949FFC742C7FED6B0068ED72 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectsCollectionCoordinator.swift; sourceTree = "<group>"; };
+		949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +142,8 @@
 				949FFC6F2C7FEC4B0068ED72 /* Utils */,
 				949FFC5E2C7F83440068ED72 /* Models */,
 				949FFC732C7FED120068ED72 /* Services */,
-				949FFC612C7F83810068ED72 /* ArtObjectCategories */,
-				949FFC4D2C7EA2690068ED72 /* ArtObjectCategory */,
+				949FFC7B2C800D070068ED72 /* ArtObjectsCollection */,
+				949FFC7E2C8015340068ED72 /* ArtObjectDetails */,
 				944AC1F42C7DDE9B00FA0DD4 /* Assets.xcassets */,
 				944AC1F62C7DDE9B00FA0DD4 /* LaunchScreen.storyboard */,
 				944AC1F92C7DDE9B00FA0DD4 /* Info.plist */,
@@ -245,6 +249,24 @@
 				949FFC742C7FED6B0068ED72 /* ServiceProvider.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		949FFC7B2C800D070068ED72 /* ArtObjectsCollection */ = {
+			isa = PBXGroup;
+			children = (
+				949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */,
+				949FFC612C7F83810068ED72 /* ArtObjectCategories */,
+				949FFC4D2C7EA2690068ED72 /* ArtObjectCategory */,
+			);
+			path = ArtObjectsCollection;
+			sourceTree = "<group>";
+		};
+		949FFC7E2C8015340068ED72 /* ArtObjectDetails */ = {
+			isa = PBXGroup;
+			children = (
+				949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */,
+			);
+			path = ArtObjectDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,9 +419,11 @@
 				949FFC512C7EA2A20068ED72 /* ArtObjectCategoryViewModel.swift in Sources */,
 				949FFC5B2C7F7EBD0068ED72 /* TwoRowGridLayout.swift in Sources */,
 				949FFC5D2C7F7EF70068ED72 /* ArtObjectItemCell.swift in Sources */,
+				949FFC802C8015500068ED72 /* ArtObjectDetailViewController.swift in Sources */,
 				949FFC602C7F834B0068ED72 /* RijkArtObject.swift in Sources */,
 				949FFC6E2C7FEBE50068ED72 /* AppConfiguration.swift in Sources */,
 				949FFC752C7FED6B0068ED72 /* ServiceProvider.swift in Sources */,
+				949FFC7D2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift in Sources */,
 				944AC1EC2C7DDE9A00FA0DD4 /* AppDelegate.swift in Sources */,
 				944AC1EE2C7DDE9A00FA0DD4 /* SceneDelegate.swift in Sources */,
 				949FFC4F2C7EA2910068ED72 /* ArtObjectCategoryView.swift in Sources */,

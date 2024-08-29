@@ -3,7 +3,7 @@ import UIKit
 
 struct ArtObjectCollectionViewItem: Hashable {
     enum State: Hashable {
-        case standart(title: String, imageURL: URL?)
+        case standart(title: String, imageURL: URL?, number: String)
         case loading
         case loadingError
     }
@@ -97,7 +97,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
             } else {
                 // swiftlint:disable:next force_cast
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArtObjectItemCell", for: indexPath) as! ArtObjectItemCell
-                guard case let .standart(title, imageURL) = item.state else {
+                guard case let .standart(title, imageURL, _) = item.state else {
                     return cell
                 }
                 cell.configure(with: title, imageURL: imageURL)
@@ -113,7 +113,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
         snapshot.appendItems(items.map({
             ArtObjectCollectionViewItem(
                 id: $0.objectNumber,
-                state: .standart(title: $0.title, imageURL: $0.headerImage.url)
+                state: .standart(title: $0.title, imageURL: $0.headerImage.url, number: $0.objectNumber)
             )
         }))
         if viewModel.state == .loading {
@@ -150,6 +150,10 @@ extension ArtObjectCategoryView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if dataSource.itemIdentifier(for: indexPath)?.state == .loadingError {
             viewModel.loadMoreData()
+        }
+
+        if case let .standart(_, _, number) = dataSource.itemIdentifier(for: indexPath)?.state {
+            viewModel.ojectDidSelect(number)
         }
     }
 }
