@@ -2,21 +2,25 @@ import Foundation
 import Combine
 import NetworkCore
 
-protocol ArtObjectCategoryViewModelProtocol: Hashable, AnyObject {
+@MainActor
+protocol ArtObjectCategoryViewModelProtocol: AnyObject, Hashable, Sendable {
+    nonisolated var id: String { get }
     var title: String { get }
     var items: [RijkArtObject] { get }
     var state: ArtObjectCategoryViewModel.State { get }
     var itemsPublisher: AnyPublisher<[RijkArtObject], Never> { get }
     var statePublisher: AnyPublisher<ArtObjectCategoryViewModel.State, Never> { get }
-    func loadInitialData()
-    func loadMoreData()
+    func loadInitialData() async
+    func loadMoreData() async
     func ojectDidSelect(_ objectNumber: String)
 }
 
+@MainActor
 protocol ArtObjectCategoryViewModelDelegate: AnyObject {
     func objectDidSlect(_ objectNumber: String)
 }
 
+@MainActor
 final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
     enum State {
         case initial
@@ -41,25 +45,27 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
     private let pageSize = 10 // TODO: Magic number
     private let maker: String
     private let technique: String
+    nonisolated let id: String
 
     init(requestManager: APIRequestManager, maker: String, technique: String) {
         self.requestManager = requestManager
         self.maker = maker
         self.technique = technique
+        self.id = technique
     }
 
     var title: String {
         technique
     }
 
-    func loadInitialData() {
+    func loadInitialData() async {
         guard state == .initial else {
             return
         }
-        loadMoreData()
+        await loadMoreData()
     }
 
-    func loadMoreData() {
+    func loadMoreData() async {
         guard state != .loading && state != .loaded else {
             return
         }
@@ -67,27 +73,26 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
         state = .loading
         page += 1
 
-        Task {
-            do {
-                let request = RijksAPIRequest.collection(
-                    page: page,
-                    pageSize: pageSize,
-                    involvedMaker: maker,
-                    technique: technique
-                )
-                let result: RijksCollection = try await requestManager.perform(request)
-                self.items.append(contentsOf: result.artObjects)
+        let request = RijksAPIRequest.collection(
+            page: page,
+            pageSize: pageSize,
+            involvedMaker: maker,
+            technique: technique
+        )
 
-                if result.artObjects.isEmpty {
-                    self.state = .loaded
-                } else {
-                    self.state = .initial
-                }
-            } catch {
-                print(technique, error)
-                self.state = .loadingError
-                self.page -= 1
+        do {
+            let result: RijksCollection = try await requestManager.perform(request)
+            self.items.append(contentsOf: result.artObjects)
+
+            if result.artObjects.isEmpty {
+                self.state = .loaded
+            } else {
+                self.state = .initial
             }
+        } catch {
+            print(technique, error)
+            self.state = .loadingError
+            self.page -= 1
         }
     }
 
@@ -97,10 +102,10 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
 }
 
 extension ArtObjectCategoryViewModel: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(title)
+    nonisolated func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
-    static func == (lhs: ArtObjectCategoryViewModel, rhs: ArtObjectCategoryViewModel) -> Bool {
-        lhs.title == rhs.title
+    nonisolated static func == (lhs: ArtObjectCategoryViewModel, rhs: ArtObjectCategoryViewModel) -> Bool {
+        lhs.id == rhs.id
     }
 }

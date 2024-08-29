@@ -28,7 +28,6 @@ class ArtObjectsCollectionCoordinator {
 extension ArtObjectsCollectionCoordinator: ArtObjectCategoriesViewModelDelegate {
     @MainActor
     func objectDidSlect(_ objectNumber: String) {
-        print("selected \(objectNumber)")
         openDetails(objectNumber: objectNumber)
     }
 }

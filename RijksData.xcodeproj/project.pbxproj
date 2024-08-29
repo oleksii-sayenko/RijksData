@@ -365,7 +365,6 @@
 			packageReferences = (
 				944AC21B2C7E33B300FA0DD4 /* XCLocalSwiftPackageReference "NetworkCore" */,
 				949FFC622C7FAA110068ED72 /* XCRemoteSwiftPackageReference "Nuke" */,
-				949FFC762C8004B60068ED72 /* XCRemoteSwiftPackageReference "Swiftlint" */,
 			);
 			productRefGroup = 944AC1E92C7DDE9A00FA0DD4 /* Products */;
 			projectDirPath = "";

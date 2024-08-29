@@ -3,15 +3,21 @@ import Combine
 import UIKit
 import NetworkCore
 
-// Thomas Worlidge (w/o images)
-
 final class ArtObjectCategoriesViewController: UIViewController, UICollectionViewDelegate {
+    enum Section {
+        case category(any ArtObjectCategoryViewModelProtocol)
+    }
+
+    struct Item: Sendable {
+        let viewModel: any ArtObjectCategoryViewModelProtocol
+    }
+
     // swiftlint:disable implicitly_unwrapped_optional
     private var collectionView: UICollectionView!
     private var activityIndicator: UIActivityIndicatorView!
     private var errorLabel: UILabel!
 
-    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyArtObjectCategoryViewModel>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -37,7 +43,9 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
     func configure(with viewModel: ArtObjectCategoriesViewModelProtocol) {
         self.viewModel = viewModel
         setupBindings()
-        viewModel.loadMoreData()
+        Task {
+            await viewModel.loadMoreData()
+        }
     }
 
     private func setupUI() {
@@ -118,7 +126,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
 
     private func setupDataSource() {
         // swiftlint:disable:next line_length
-        dataSource = UICollectionViewDiffableDataSource<Section, AnyArtObjectCategoryViewModel>(collectionView: collectionView) { collectionView, indexPath, viewModel in
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, viewModel in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "ArtObjectCategoryView",
                 for: indexPath
@@ -167,11 +175,11 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
     }
 
     private func applySnapshot(sections: [any ArtObjectCategoryViewModelProtocol]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyArtObjectCategoryViewModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
 
         sections.forEach { sectionModel in
             snapshot.appendSections([.category(sectionModel)])
-            snapshot.appendItems([.init(sectionModel)])
+            snapshot.appendItems([.init(viewModel: sectionModel)])
         }
 
         dataSource.apply(snapshot, animatingDifferences: true)
@@ -182,51 +190,43 @@ extension ArtObjectCategoriesViewController: UICollectionViewDataSourcePrefetchi
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         let thresholdIndex = viewModel.items.count - 5
         if indexPaths.contains(where: { $0.section > thresholdIndex }) {
-            viewModel.loadMoreData()
+            Task {
+                await viewModel.loadMoreData()
+            }
         }
     }
 }
 
-struct AnyArtObjectCategoryViewModel: Hashable, Sendable {
-    let viewModel: any ArtObjectCategoryViewModelProtocol
+extension ArtObjectCategoriesViewController.Item: Hashable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.viewModel.id == rhs.viewModel.id
+    }
 
-    init(_ viewModel: any ArtObjectCategoryViewModelProtocol) {
-        self.viewModel = viewModel
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(viewModel.id)
+    }
+}
+
+extension ArtObjectCategoriesViewController.Section: Hashable {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .category(let viewModel):
+            hasher.combine(viewModel.id)
+        }
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.viewModel === rhs.viewModel // Reference equality
+        switch (lhs, rhs) {
+        case let (.category(lhsViewModel), .category(rhsViewModel)):
+            return lhsViewModel.id == rhsViewModel.id
+        }
     }
 
-   func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(type(of: viewModel))) // Use the type identifier for hashing
-        hasher.combine(viewModel) // Delegate to underlying viewModel's hash function
-    }
-}
-
-extension ArtObjectCategoriesViewController {
-    enum Section: Hashable, Sendable {
-        case category(any ArtObjectCategoryViewModelProtocol)
-
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case .category(let viewModel):
-                hasher.combine(viewModel.title)
-            }
-        }
-
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.category(lhsViewModel), .category(rhsViewModel)):
-                return lhsViewModel === rhsViewModel
-            }
-        }
-
-        var title: String {
-            switch self {
-            case .category(let viewModel):
-                return viewModel.title
-            }
+    @MainActor
+    var title: String {
+        switch self {
+        case .category(let viewModel):
+            return viewModel.title
         }
     }
 }

@@ -43,7 +43,9 @@ class ArtObjectCategoryView: UICollectionViewCell {
     func configure(with viewModel: any ArtObjectCategoryViewModelProtocol) {
         self.viewModel = viewModel
         setupBindings()
-        viewModel.loadInitialData()
+        Task {
+            await viewModel.loadInitialData()
+        }
     }
 
     private func setupCollectionView() {
@@ -149,7 +151,9 @@ class ArtObjectCategoryView: UICollectionViewCell {
 extension ArtObjectCategoryView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if dataSource.itemIdentifier(for: indexPath)?.state == .loadingError {
-            viewModel.loadMoreData()
+            Task {
+                await viewModel.loadMoreData()
+            }
         }
 
         if case let .standart(_, _, number) = dataSource.itemIdentifier(for: indexPath)?.state {
@@ -162,7 +166,9 @@ extension ArtObjectCategoryView: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         let thresholdIndex = viewModel.items.count - 5
         if indexPaths.contains(where: { $0.item > thresholdIndex }) {
-            viewModel.loadMoreData()
+            Task {
+                await viewModel.loadMoreData()
+            }
         }
     }
 }

@@ -3,17 +3,20 @@ import OSLog
 import Combine
 import NetworkCore
 
+@MainActor
 protocol ArtObjectCategoriesViewModelProtocol {
     var items: [any ArtObjectCategoryViewModelProtocol] { get }
     var itemsPublisher: AnyPublisher<[any ArtObjectCategoryViewModelProtocol], Never> { get }
     var statePublisher: AnyPublisher<ArtObjectCategoriesViewModel.State, Never> { get }
-    func loadMoreData()
+    func loadMoreData() async
 }
 
+@MainActor
 protocol ArtObjectCategoriesViewModelDelegate: AnyObject {
     func objectDidSlect(_ objectNumber: String)
 }
 
+@MainActor
 final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
     enum State {
         case initial
@@ -45,9 +48,9 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         self.maker = maker
     }
 
-    func loadMoreData() {
+    func loadMoreData() async {
         guard state != .initial else {
-            loadInitialData()
+            await loadInitialData()
             return
         }
 
@@ -77,27 +80,26 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         state = .readyForLoadMore
     }
 
-    func loadInitialData() {
+    func loadInitialData() async {
         guard state == .initial else {
             return
         }
 
         state = .initialLoading
 
-        Task {
-            do {
-                let request = RijksAPIRequest.collection(
-                    page: 1,
-                    pageSize: 1,
-                    involvedMaker: self.maker,
-                    technique: nil
-                ) // TODO: looks no so good
-                self.collection = try await self.requestManager.perform(request)
-                self.state = .readyForLoadMore
-                self.loadMoreData()
-            } catch {
-                self.state = .initialLoadingError(error)
-            }
+        let request = RijksAPIRequest.collection(
+            page: 1,
+            pageSize: 1,
+            involvedMaker: self.maker,
+            technique: nil
+        ) // TODO: looks no so good
+
+        do {
+            collection = try await self.requestManager.perform(request)
+            state = .readyForLoadMore
+            await loadMoreData()
+        } catch {
+            state = .initialLoadingError(error)
         }
     }
 }
