@@ -126,10 +126,10 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
     private func setupDataSource() {
         // swiftlint:disable:next line_length
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, viewModel in
+            // TODO: Add extension
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "ArtObjectCategoryView",
                 for: indexPath
-                // swiftlint:disable:next force_cast
             ) as! ArtObjectCategoryView
             cell.configure(with: viewModel.viewModel)
             return cell
@@ -141,7 +141,6 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
                 ofKind: kind,
                 withReuseIdentifier: ArtObjectCategoryHeaderView.reuseIdentifier,
                 for: indexPath
-                // swiftlint:disable:next force_cast
             ) as! ArtObjectCategoryHeaderView
             headerView.configure(with: section.title) // TODO: Section title
             return headerView

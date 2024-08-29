@@ -303,7 +303,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				949FFC7A2C8004C30068ED72 /* PBXTargetDependency */,
+				94233B122C80BD13004C6CD3 /* PBXTargetDependency */,
 			);
 			name = RijksData;
 			packageProductDependencies = (
@@ -385,6 +385,7 @@
 			packageReferences = (
 				944AC21B2C7E33B300FA0DD4 /* XCLocalSwiftPackageReference "NetworkCore" */,
 				949FFC622C7FAA110068ED72 /* XCRemoteSwiftPackageReference "Nuke" */,
+				94233B0E2C80BD0B004C6CD3 /* XCRemoteSwiftPackageReference "Swiftlint" */,
 			);
 			productRefGroup = 944AC1E92C7DDE9A00FA0DD4 /* Products */;
 			projectDirPath = "";
@@ -475,6 +476,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		94233B122C80BD13004C6CD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 94233B112C80BD13004C6CD3 /* SwiftLintPlugin */;
+		};
 		944AC2002C7DDE9B00FA0DD4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 944AC1E72C7DDE9A00FA0DD4 /* RijksData */;
@@ -484,10 +489,6 @@
 			isa = PBXTargetDependency;
 			target = 944AC1E72C7DDE9A00FA0DD4 /* RijksData */;
 			targetProxy = 944AC2092C7DDE9B00FA0DD4 /* PBXContainerItemProxy */;
-		};
-		949FFC7A2C8004C30068ED72 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 949FFC792C8004C30068ED72 /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -799,6 +800,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		94233B0E2C80BD0B004C6CD3 /* XCRemoteSwiftPackageReference "Swiftlint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/Swiftlint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.56.2;
+			};
+		};
 		949FFC622C7FAA110068ED72 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
@@ -807,17 +816,14 @@
 				minimumVersion = 12.8.0;
 			};
 		};
-		949FFC762C8004B60068ED72 /* XCRemoteSwiftPackageReference "Swiftlint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/Swiftlint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.56.2;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		94233B112C80BD13004C6CD3 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 94233B0E2C80BD0B004C6CD3 /* XCRemoteSwiftPackageReference "Swiftlint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
 		944AC21C2C7E33B300FA0DD4 /* NetworkCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkCore;
@@ -826,11 +832,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 949FFC622C7FAA110068ED72 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
-		};
-		949FFC792C8004C30068ED72 /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 949FFC762C8004B60068ED72 /* XCRemoteSwiftPackageReference "Swiftlint" */;
-			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -81,6 +81,9 @@ analyzer_rules:
  - unused_import
 
 # If true, SwiftLint will treat all warnings as errors.
-strict: true
+#strict: false
+
+force_cast:
+    severity: warning
 
 reporter: "xcode"

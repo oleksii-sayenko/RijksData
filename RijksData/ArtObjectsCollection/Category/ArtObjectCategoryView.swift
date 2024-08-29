@@ -90,16 +90,13 @@ class ArtObjectCategoryView: UICollectionViewCell {
         // swiftlint:disable line_length
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {collectionView, indexPath, item in
             if item.state == .loading {
-                // swiftlint:disable:next force_cast
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCell", for: indexPath) as! LoadingCell
                 cell.startAnimating()
                 return cell
             } else if item.state == .loadingError {
-                // swiftlint:disable:next force_cast
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TryAgainCell", for: indexPath) as! TryAgainCell
                 return cell
             } else {
-                // swiftlint:disable:next force_cast
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArtObjectItemCell", for: indexPath) as! ArtObjectItemCell
                 guard case let .standart(title, imageURL, _) = item.state else {
                     return cell
