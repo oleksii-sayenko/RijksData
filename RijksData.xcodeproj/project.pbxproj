@@ -11,12 +11,16 @@
 		94233B092C808E36004C6CD3 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B082C808E36004C6CD3 /* ID.swift */; };
 		94233B0B2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */; };
 		94233B0D2C809527004C6CD3 /* RijkArtObjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */; };
+		94233B142C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B132C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift */; };
+		94233B162C80C4B2004C6CD3 /* ArtObjectCategoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B152C80C4B2004C6CD3 /* ArtObjectCategoriesViewModelTests.swift */; };
+		94233B182C80DD4E004C6CD3 /* MockAPIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B172C80DD4E004C6CD3 /* MockAPIRequestManager.swift */; };
+		94233B1A2C80DDBD004C6CD3 /* ArtObjectCategoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B192C80DDBD004C6CD3 /* ArtObjectCategoryViewModelTests.swift */; };
+		94233B1C2C811FE5004C6CD3 /* ArtObjectDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B1B2C811FE5004C6CD3 /* ArtObjectDetailViewModelTests.swift */; };
 		944AC1EC2C7DDE9A00FA0DD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1EB2C7DDE9A00FA0DD4 /* AppDelegate.swift */; };
 		944AC1EE2C7DDE9A00FA0DD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1ED2C7DDE9A00FA0DD4 /* SceneDelegate.swift */; };
 		944AC1F02C7DDE9A00FA0DD4 /* ArtObjectCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1EF2C7DDE9A00FA0DD4 /* ArtObjectCategoriesViewController.swift */; };
 		944AC1F52C7DDE9B00FA0DD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944AC1F42C7DDE9B00FA0DD4 /* Assets.xcassets */; };
 		944AC1F82C7DDE9B00FA0DD4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 944AC1F72C7DDE9B00FA0DD4 /* Base */; };
-		944AC2032C7DDE9B00FA0DD4 /* RijksDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC2022C7DDE9B00FA0DD4 /* RijksDataTests.swift */; };
 		944AC20D2C7DDE9B00FA0DD4 /* RijksDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC20C2C7DDE9B00FA0DD4 /* RijksDataUITests.swift */; };
 		944AC20F2C7DDE9B00FA0DD4 /* RijksDataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC20E2C7DDE9B00FA0DD4 /* RijksDataUITestsLaunchTests.swift */; };
 		944AC21D2C7E33B300FA0DD4 /* NetworkCore in Frameworks */ = {isa = PBXBuildFile; productRef = 944AC21C2C7E33B300FA0DD4 /* NetworkCore */; };
@@ -38,6 +42,7 @@
 		949FFC752C7FED6B0068ED72 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC742C7FED6B0068ED72 /* ServiceProvider.swift */; };
 		949FFC7D2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */; };
 		949FFC802C8015500068ED72 /* ArtObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */; };
+		94D2ECF82C81304B003F990E /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D2ECF72C81304B003F990E /* MockNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +67,11 @@
 		94233B082C808E36004C6CD3 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewModel.swift; sourceTree = "<group>"; };
 		94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijkArtObjectDetail.swift; sourceTree = "<group>"; };
+		94233B132C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectsCollectionCoordinatorTests.swift; sourceTree = "<group>"; };
+		94233B152C80C4B2004C6CD3 /* ArtObjectCategoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectCategoriesViewModelTests.swift; sourceTree = "<group>"; };
+		94233B172C80DD4E004C6CD3 /* MockAPIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIRequestManager.swift; sourceTree = "<group>"; };
+		94233B192C80DDBD004C6CD3 /* ArtObjectCategoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectCategoryViewModelTests.swift; sourceTree = "<group>"; };
+		94233B1B2C811FE5004C6CD3 /* ArtObjectDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewModelTests.swift; sourceTree = "<group>"; };
 		944AC1E82C7DDE9A00FA0DD4 /* RijksData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RijksData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944AC1EB2C7DDE9A00FA0DD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944AC1ED2C7DDE9A00FA0DD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +80,6 @@
 		944AC1F72C7DDE9B00FA0DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		944AC1F92C7DDE9B00FA0DD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944AC1FE2C7DDE9B00FA0DD4 /* RijksDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RijksDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		944AC2022C7DDE9B00FA0DD4 /* RijksDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijksDataTests.swift; sourceTree = "<group>"; };
 		944AC2082C7DDE9B00FA0DD4 /* RijksDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RijksDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		944AC20C2C7DDE9B00FA0DD4 /* RijksDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijksDataUITests.swift; sourceTree = "<group>"; };
 		944AC20E2C7DDE9B00FA0DD4 /* RijksDataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijksDataUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -92,6 +101,8 @@
 		949FFC742C7FED6B0068ED72 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectsCollectionCoordinator.swift; sourceTree = "<group>"; };
 		949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewController.swift; sourceTree = "<group>"; };
+		94D2ECF72C81304B003F990E /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
+		94D2ECF92C81312C003F990E /* RijksData.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = RijksData.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +175,7 @@
 				944AC1F62C7DDE9B00FA0DD4 /* LaunchScreen.storyboard */,
 				944AC1F92C7DDE9B00FA0DD4 /* Info.plist */,
 				949FFC6C2C7FE7D50068ED72 /* Config.xcconfig */,
+				94D2ECF92C81312C003F990E /* RijksData.xctestplan */,
 			);
 			path = RijksData;
 			sourceTree = "<group>";
@@ -171,7 +183,11 @@
 		944AC2012C7DDE9B00FA0DD4 /* RijksDataTests */ = {
 			isa = PBXGroup;
 			children = (
-				944AC2022C7DDE9B00FA0DD4 /* RijksDataTests.swift */,
+				94D2ECF62C81301B003F990E /* Mocks */,
+				94233B132C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift */,
+				94233B152C80C4B2004C6CD3 /* ArtObjectCategoriesViewModelTests.swift */,
+				94233B192C80DDBD004C6CD3 /* ArtObjectCategoryViewModelTests.swift */,
+				94233B1B2C811FE5004C6CD3 /* ArtObjectDetailViewModelTests.swift */,
 			);
 			path = RijksDataTests;
 			sourceTree = "<group>";
@@ -287,6 +303,15 @@
 				949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */,
 			);
 			path = ArtObjectDetails;
+			sourceTree = "<group>";
+		};
+		94D2ECF62C81301B003F990E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				94233B172C80DD4E004C6CD3 /* MockAPIRequestManager.swift */,
+				94D2ECF72C81304B003F990E /* MockNavigationController.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,7 +485,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944AC2032C7DDE9B00FA0DD4 /* RijksDataTests.swift in Sources */,
+				94233B162C80C4B2004C6CD3 /* ArtObjectCategoriesViewModelTests.swift in Sources */,
+				94233B182C80DD4E004C6CD3 /* MockAPIRequestManager.swift in Sources */,
+				94233B1A2C80DDBD004C6CD3 /* ArtObjectCategoryViewModelTests.swift in Sources */,
+				94233B1C2C811FE5004C6CD3 /* ArtObjectDetailViewModelTests.swift in Sources */,
+				94233B142C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift in Sources */,
+				94D2ECF82C81304B003F990E /* MockNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +835,7 @@
 			repositoryURL = "https://github.com/realm/Swiftlint.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.56.2;
+				minimumVersion = 0.54.0;
 			};
 		};
 		949FFC622C7FAA110068ED72 /* XCRemoteSwiftPackageReference "Nuke" */ = {

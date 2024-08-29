@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "5E70C5C1-2413-4D03-AE93-7856FF969CDE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:RijksData.xcodeproj",
+      "identifier" : "944AC1E72C7DDE9A00FA0DD4",
+      "name" : "RijksData"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RijksData.xcodeproj",
+        "identifier" : "944AC1FD2C7DDE9B00FA0DD4",
+        "name" : "RijksDataTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RijksData.xcodeproj",
+        "identifier" : "944AC2072C7DDE9B00FA0DD4",
+        "name" : "RijksDataUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

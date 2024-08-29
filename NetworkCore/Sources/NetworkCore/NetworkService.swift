@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol NetworkServiceProtocol {
+public protocol NetworkServiceProtocol: Sendable {
     func load(using request: URLRequest) async throws -> (Data, URLResponse)
 }
 

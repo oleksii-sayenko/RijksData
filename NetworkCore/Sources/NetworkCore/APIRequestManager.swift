@@ -1,17 +1,11 @@
 import Foundation
-import OSLog
+@preconcurrency import OSLog
 
 public protocol APIRequestManagerProtocol: Sendable {
     func perform<T: Decodable>(_ request: APIRequest) async throws -> T
 }
 
-public extension APIRequestManagerProtocol {
-    func perform<T: Decodable>(_ request: APIRequest) async throws -> T {
-        try await perform(request)
-    }
-}
-
-public class APIRequestManager: APIRequestManagerProtocol {
+final public class APIRequestManager: APIRequestManagerProtocol {
     private let networkService: NetworkServiceProtocol
     private let requestBuilder: APIRequestBuilderProtocol
     private let logger: Logger?
@@ -27,10 +21,6 @@ public class APIRequestManager: APIRequestManagerProtocol {
     }
 
     public func perform<T: Decodable>(_ request: APIRequest) async throws -> T {
-        try await run(request)
-    }
-
-    private func run<T: Decodable>(_ request: APIRequest) async throws -> T {
         let urlRequest = try requestBuilder.createRequest(with: request)
         do {
             let (data, response) = try await networkService.load(using: urlRequest)

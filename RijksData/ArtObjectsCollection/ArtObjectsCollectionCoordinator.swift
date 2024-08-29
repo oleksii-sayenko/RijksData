@@ -1,8 +1,8 @@
 import UIKit
 
 class ArtObjectsCollectionCoordinator {
-    var navigationController: UINavigationController
-    var detailCoordinator: ArtObjectDetailCoordinator?
+    private let navigationController: UINavigationController
+    private var detailCoordinator: ArtObjectDetailCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

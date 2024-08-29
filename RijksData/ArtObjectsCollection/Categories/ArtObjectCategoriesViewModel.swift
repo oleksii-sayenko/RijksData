@@ -36,14 +36,14 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         $state.eraseToAnyPublisher()
     }
 
-    private let requestManager: APIRequestManager
+    private let requestManager: APIRequestManagerProtocol
     weak var delegate: ArtObjectCategoriesViewModelDelegate?
 
     private let maker: String
     private var page = -1
     private let pageSize = 10 // TODO: Magic number
 
-    init(requestManager: APIRequestManager, maker: String) {
+    init(requestManager: APIRequestManagerProtocol, maker: String) {
         self.requestManager = requestManager
         self.maker = maker
     }

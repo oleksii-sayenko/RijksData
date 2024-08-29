@@ -44,7 +44,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
         self.viewModel = viewModel
         setupBindings()
         Task {
-            await viewModel.loadInitialData()
+            await viewModel.loadMoreData()
         }
     }
 

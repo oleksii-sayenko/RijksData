@@ -22,9 +22,9 @@ class ArtObjectDetailViewModel: ArtObjectDetailViewModelProtocol {
     }
 
     private let objectID: RijkArtObject.ID
-    private let requestManager: APIRequestManager
+    private let requestManager: APIRequestManagerProtocol
 
-    init(id: RijkArtObject.ID, requestManager: APIRequestManager) {
+    init(id: RijkArtObject.ID, requestManager: APIRequestManagerProtocol) {
         objectID = id
         self.requestManager = requestManager
     }
@@ -35,7 +35,6 @@ class ArtObjectDetailViewModel: ArtObjectDetailViewModelProtocol {
         }
 
         state = .loading
-        print(objectID)
         let request = RijksAPIRequest.detail(id: objectID)
 
         do {

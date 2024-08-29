@@ -1,11 +1,11 @@
 import Foundation
-import OSLog
+@preconcurrency import OSLog
 
-public protocol APIRequestBuilderProtocol {
+public protocol APIRequestBuilderProtocol: Sendable {
     func createRequest(with apiRequest: APIRequest) throws -> URLRequest
 }
 
-public class APIRequestBuilder: APIRequestBuilderProtocol {
+public final class APIRequestBuilder: APIRequestBuilderProtocol {
     private let host: URL
     private let logger: Logger?
 
@@ -25,10 +25,15 @@ public class APIRequestBuilder: APIRequestBuilderProtocol {
             logger?.critical("can't resolve \(url.absoluteString) into componets")
             throw URLError(.badURL)
         }
+
         let queryItems = apiRequest.urlParams?.compactMap {
             URLQueryItem(name: $0, value: "\($1)")
         }
-        components.queryItems?.append(contentsOf: queryItems ?? [])
+
+        if let queryItems {
+            components.queryItems = (components.queryItems ?? []) + queryItems
+        }
+
         urlRequest.url = components.url
 
         if let bodyParams = apiRequest.bodyParams {

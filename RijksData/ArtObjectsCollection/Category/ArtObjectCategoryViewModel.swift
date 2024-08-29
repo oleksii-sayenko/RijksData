@@ -10,7 +10,6 @@ protocol ArtObjectCategoryViewModelProtocol: AnyObject, Hashable, Sendable {
     var state: ArtObjectCategoryViewModel.State { get }
     var itemsPublisher: AnyPublisher<[RijkArtObject], Never> { get }
     var statePublisher: AnyPublisher<ArtObjectCategoryViewModel.State, Never> { get }
-    func loadInitialData() async
     func loadMoreData() async
     func ojectDidSelect(_ id: RijkArtObject.ID)
 }
@@ -38,7 +37,7 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
         $state.eraseToAnyPublisher()
     }
 
-    private let requestManager: APIRequestManager
+    private let requestManager: APIRequestManagerProtocol
     weak var delegate: ArtObjectCategoryViewModelDelegate?
 
     private var page = 0
@@ -47,7 +46,7 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
     private let technique: String
     nonisolated let id: String
 
-    init(requestManager: APIRequestManager, maker: String, technique: String) {
+    init(requestManager: APIRequestManagerProtocol, maker: String, technique: String) {
         self.requestManager = requestManager
         self.maker = maker
         self.technique = technique
@@ -56,13 +55,6 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
 
     var title: String {
         technique
-    }
-
-    func loadInitialData() async {
-        guard state == .initial else {
-            return
-        }
-        await loadMoreData()
     }
 
     func loadMoreData() async {
@@ -90,7 +82,6 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
                 self.state = .initial
             }
         } catch {
-            print(technique, error)
             self.state = .loadingError
             self.page -= 1
         }
