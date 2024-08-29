@@ -19,15 +19,15 @@ class ArtObjectsCollectionCoordinator {
     }
 
     @MainActor
-    func openDetails(objectNumber: String) {
-        let detailViewController = ArtObjectDetailViewController()
-        navigationController.pushViewController(detailViewController, animated: true)
+    func openDetails(for id: RijkArtObject.ID) {
+        detailCoordinator = ArtObjectDetailCoordinator(navigationController: navigationController)
+        detailCoordinator?.start(for: "", in: ["", ""])
     }
 }
 
 extension ArtObjectsCollectionCoordinator: ArtObjectCategoriesViewModelDelegate {
     @MainActor
-    func objectDidSlect(_ objectNumber: String) {
-        openDetails(objectNumber: objectNumber)
+    func objectDidSlect(_ id: RijkArtObject.ID) {
+        openDetails(for: id)
     }
 }

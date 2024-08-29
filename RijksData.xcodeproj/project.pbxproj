@@ -113,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94233B072C808E2E004C6CD3 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				94233B082C808E36004C6CD3 /* ID.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		944AC1DF2C7DDE9A00FA0DD4 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +238,7 @@
 		949FFC6F2C7FEC4B0068ED72 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				94233B072C808E2E004C6CD3 /* Types */,
 				949FFC702C7FEC5E0068ED72 /* PropertyWrappers */,
 			);
 			path = Utils;

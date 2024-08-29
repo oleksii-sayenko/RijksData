@@ -13,7 +13,7 @@ protocol ArtObjectCategoriesViewModelProtocol {
 
 @MainActor
 protocol ArtObjectCategoriesViewModelDelegate: AnyObject {
-    func objectDidSlect(_ objectNumber: String)
+    func objectDidSlect(_ objectNumber: RijkArtObject.ID)
 }
 
 @MainActor
@@ -105,8 +105,8 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
 }
 
 extension ArtObjectCategoriesViewModel: ArtObjectCategoryViewModelDelegate {
-    func objectDidSlect(_ objectNumber: String) {
-        delegate?.objectDidSlect(objectNumber)
+    func objectDidSlect(_ id: RijkArtObject.ID) {
+        delegate?.objectDidSlect(id)
     }
 }
 

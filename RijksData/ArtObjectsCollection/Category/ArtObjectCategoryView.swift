@@ -8,7 +8,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
 
     struct Item: Hashable {
         enum State: Hashable {
-            case standart(title: String, imageURL: URL?, number: String)
+            case standart(title: String, imageURL: URL?, id: RijkArtObject.ID)
             case loading
             case loadingError
         }
@@ -119,7 +119,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
         snapshot.appendItems(items.map({
             Item(
                 id: $0.objectNumber,
-                state: .standart(title: $0.title, imageURL: $0.headerImage.url, number: $0.objectNumber)
+                state: .standart(title: $0.title, imageURL: $0.headerImage.url, id: $0.id)
             )
         }))
         if viewModel.state == .loading {
@@ -160,8 +160,8 @@ extension ArtObjectCategoryView: UICollectionViewDelegate {
             }
         }
 
-        if case let .standart(_, _, number) = dataSource.itemIdentifier(for: indexPath)?.state {
-            viewModel.ojectDidSelect(number)
+        if case let .standart(_, _, id) = dataSource.itemIdentifier(for: indexPath)?.state {
+            viewModel.ojectDidSelect(id)
         }
     }
 }

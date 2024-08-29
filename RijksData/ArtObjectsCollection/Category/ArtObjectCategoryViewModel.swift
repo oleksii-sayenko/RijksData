@@ -12,12 +12,12 @@ protocol ArtObjectCategoryViewModelProtocol: AnyObject, Hashable, Sendable {
     var statePublisher: AnyPublisher<ArtObjectCategoryViewModel.State, Never> { get }
     func loadInitialData() async
     func loadMoreData() async
-    func ojectDidSelect(_ objectNumber: String)
+    func ojectDidSelect(_ id: RijkArtObject.ID)
 }
 
 @MainActor
 protocol ArtObjectCategoryViewModelDelegate: AnyObject {
-    func objectDidSlect(_ objectNumber: String)
+    func objectDidSlect(_ id: RijkArtObject.ID)
 }
 
 @MainActor
@@ -96,8 +96,8 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
         }
     }
 
-    func ojectDidSelect(_ objectNumber: String) {
-        delegate?.objectDidSlect(objectNumber)
+    func ojectDidSelect(_ id: RijkArtObject.ID) {
+        delegate?.objectDidSlect(id)
     }
 }
 
