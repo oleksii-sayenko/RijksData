@@ -1,14 +1,6 @@
-//
-//  RijksDataUITestsLaunchTests.swift
-//  RijksDataUITests
-//
-//  Created by Aleksey Sayenko on 27.08.2024.
-//
-
 import XCTest
 
 final class RijksDataUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
