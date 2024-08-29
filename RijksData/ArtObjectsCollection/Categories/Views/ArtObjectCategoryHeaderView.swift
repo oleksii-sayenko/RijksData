@@ -6,7 +6,7 @@ class ArtObjectCategoryHeaderView: UICollectionReusableView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.monospacedSystemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.monospacedSystemFont(ofSize: Constants.titleFontSize, weight: .bold)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -25,10 +25,10 @@ class ArtObjectCategoryHeaderView: UICollectionReusableView {
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.titleMargin.leading),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.titleMargin.trailing),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.titleMargin.top),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.titleMargin.bottom)
         ])
 
         titleLabel.textColor = .orange
@@ -36,5 +36,12 @@ class ArtObjectCategoryHeaderView: UICollectionReusableView {
 
     func configure(with title: String) {
         titleLabel.text = title.capitalized
+    }
+}
+
+extension ArtObjectCategoryHeaderView {
+    enum Constants {
+        static let titleFontSize: CGFloat = 18
+        static let titleMargin: NSDirectionalEdgeInsets = .init(top: 8, leading: 16, bottom: -8, trailing: -16)
     }
 }

@@ -74,7 +74,7 @@ final class ArtObjectDetailViewController: UIViewController {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
-        titleLabel.font = .boldSystemFont(ofSize: 18)
+        titleLabel.font = .boldSystemFont(ofSize: Constants.titleFontSize)
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
@@ -140,7 +140,7 @@ final class ArtObjectDetailViewController: UIViewController {
 
         detail.label.description.map {
             descriptionLabel.isHidden = false
-            descriptionLabel.font = .italicSystemFont(ofSize: 14)
+            descriptionLabel.font = .italicSystemFont(ofSize: Constants.decriptionFontSize)
             descriptionLabel.text = $0
         }
 
@@ -159,8 +159,20 @@ final class ArtObjectDetailViewController: UIViewController {
         imageView.image = .init(systemName: "photo")
         titleLabel.isHidden = false
         descriptionLabel.isHidden = false
-        descriptionLabel.font = .systemFont(ofSize: 14)
+        descriptionLabel.font = .systemFont(ofSize: Constants.errorFontSize)
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = "⚠️\nError occured\n\(error.localizedDescription)"
+        descriptionLabel.text = "\(Text.errorHeader)\n\(error.localizedDescription)"
     }
 }
+
+extension ArtObjectDetailViewController {
+    enum Constants {
+        static let titleFontSize: CGFloat = 18
+        static let decriptionFontSize: CGFloat = 14
+        static let errorFontSize: CGFloat = 14
+    }
+    enum Text {
+        static let errorHeader = "⚠️\nError occured"
+    }
+}
+

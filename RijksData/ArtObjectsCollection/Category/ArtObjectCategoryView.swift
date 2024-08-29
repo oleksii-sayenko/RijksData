@@ -20,8 +20,8 @@ class ArtObjectCategoryView: UICollectionViewCell {
     private lazy var layout = {
         let layout = TwoRowGridLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = Constants.spacing
+        layout.minimumLineSpacing = Constants.spacing
         return layout
     }()
     // swiftlint:disable implicitly_unwrapped_optional
@@ -171,5 +171,11 @@ extension ArtObjectCategoryView: UICollectionViewDataSourcePrefetching {
                 await viewModel.loadMoreData()
             }
         }
+    }
+}
+
+extension ArtObjectCategoryView {
+    enum Constants {
+        static let spacing: CGFloat = 10
     }
 }

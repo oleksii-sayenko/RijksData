@@ -14,7 +14,7 @@ class TryAgainCell: UICollectionViewCell {
 
     private func setupUI() {
         contentView.backgroundColor = .systemGray4
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = Constants.cornerRadius
 
         setupLabel()
     }
@@ -31,6 +31,16 @@ class TryAgainCell: UICollectionViewCell {
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
 
-        label.text = "⚠️\nError occured\nTap to retry"
+        label.text = Text.tapToRetry
+    }
+}
+
+extension TryAgainCell {
+    enum Constants {
+        static let cornerRadius: CGFloat = 8
+    }
+
+    enum Text {
+        static let tapToRetry = "⚠️\nError occured\nTap to retry"
     }
 }

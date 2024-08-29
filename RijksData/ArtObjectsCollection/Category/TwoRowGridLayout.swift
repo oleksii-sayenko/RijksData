@@ -14,9 +14,9 @@ class TwoRowGridLayout: UICollectionViewFlowLayout {
         let availableWidth = collectionView.bounds.width
             - collectionView.contentInset.left
             - collectionView.contentInset.right
-        let cellWidth = availableWidth * 0.70
+        let cellWidth = availableWidth * Constants.widthPercent
 
-        sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        sectionInset = Constants.sectionInsets
 
         itemSize = CGSize(width: cellWidth, height: cellHeight)
     }
@@ -66,5 +66,12 @@ class TwoRowGridLayout: UICollectionViewFlowLayout {
         let height = collectionView.bounds.height
 
         return CGSize(width: width, height: height)
+    }
+}
+
+extension TwoRowGridLayout {
+    enum Constants {
+        static let widthPercent: CGFloat = 0.7
+        static let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }

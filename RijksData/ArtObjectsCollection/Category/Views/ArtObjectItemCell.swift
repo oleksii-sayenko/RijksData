@@ -27,12 +27,11 @@ class ArtObjectItemCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             titleBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleBackground.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            titleBackground.topAnchor.constraint(equalTo: label.topAnchor, constant: -10),
+            titleBackground.topAnchor.constraint(equalTo: label.topAnchor, constant: -Constants.padding),
             titleBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            // TODO: magic number
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.padding),
 
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -41,18 +40,18 @@ class ArtObjectItemCell: UICollectionViewCell {
         ])
 
         contentView.backgroundColor = .systemGray5
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = Constants.cornerRadius
 
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = Constants.cornerRadius
 
         titleBackground.backgroundColor = .black.withAlphaComponent(0.4)
         titleBackground.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        titleBackground.layer.cornerRadius = 8
+        titleBackground.layer.cornerRadius = Constants.cornerRadius
 
-        label.font = .italicSystemFont(ofSize: 12)
+        label.font = .italicSystemFont(ofSize: Constants.fontSize)
         label.textColor = .white
         label.numberOfLines = 2
     }
@@ -77,5 +76,13 @@ class ArtObjectItemCell: UICollectionViewCell {
     override func prepareForReuse() {
         imageView.image = .init(systemName: "photo")
         imageView.contentMode = .scaleAspectFit
+    }
+}
+
+extension ArtObjectItemCell {
+    enum Constants {
+        static let padding: CGFloat = 10
+        static let cornerRadius: CGFloat = 8
+        static let fontSize: CGFloat = 12
     }
 }

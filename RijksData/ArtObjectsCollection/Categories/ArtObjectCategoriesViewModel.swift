@@ -42,7 +42,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
 
     private let maker: String
     private var page = -1
-    private let pageSize = 10 // TODO: Magic number
+    private let pageSize = 10
 
     init(requestManager: APIRequestManagerProtocol, maker: String) {
         self.requestManager = requestManager

@@ -84,7 +84,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         func createHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(44)
+                heightDimension: .estimated(Constants.sectionHeaderHeight)
             )
             let header = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: headerSize,
@@ -141,7 +141,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
                 withReuseIdentifier: ArtObjectCategoryHeaderView.reuseIdentifier,
                 for: indexPath
             ) as! ArtObjectCategoryHeaderView
-            headerView.configure(with: section.title) // TODO: Section title
+            headerView.configure(with: section.title)
             return headerView
         }
     }
@@ -235,5 +235,11 @@ extension ArtObjectCategoriesViewController.Section: Hashable {
         case .category(let viewModel):
             return viewModel.title
         }
+    }
+}
+
+extension ArtObjectCategoriesViewController {
+    enum Constants {
+        static let sectionHeaderHeight: CGFloat = 44
     }
 }

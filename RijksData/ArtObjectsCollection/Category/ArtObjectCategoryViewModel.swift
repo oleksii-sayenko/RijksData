@@ -41,7 +41,7 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
     weak var delegate: ArtObjectCategoryViewModelDelegate?
 
     private var page = 0
-    private let pageSize = 10 // TODO: Magic number
+    private let pageSize = 10
     private let maker: String
     private let technique: String
     nonisolated let id: String
