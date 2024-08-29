@@ -48,6 +48,8 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         }
     }
 
+    // MARK: Setup UI
+
     private func setupUI() {
         setupCollectionView()
         setupActivityIndicator()
@@ -85,19 +87,20 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         collectionView.backgroundColor = .systemGray6
     }
 
-    private func setupActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        view.addSubview(activityIndicator)
-
-        activityIndicator.isHidden = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
-
     private func createSectionLayout() -> NSCollectionLayoutSection {
+        func createHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(44)
+            )
+            let header = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            return header
+        }
+
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
@@ -114,14 +117,16 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         return section
     }
 
-    private func createHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        return header
+    private func setupActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        view.addSubview(activityIndicator)
+
+        activityIndicator.isHidden = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
     private func setupDataSource() {
@@ -130,7 +135,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "ArtObjectCategoryView",
                 for: indexPath
-            // swiftlint:disable:next force_cast
+                // swiftlint:disable:next force_cast
             ) as! ArtObjectCategoryView
             cell.configure(with: viewModel.viewModel)
             return cell
@@ -142,7 +147,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
                 ofKind: kind,
                 withReuseIdentifier: ArtObjectCategoryHeaderView.reuseIdentifier,
                 for: indexPath
-            // swiftlint:disable:next force_cast
+                // swiftlint:disable:next force_cast
             ) as! ArtObjectCategoryHeaderView
             headerView.configure(with: section.title) // TODO: Section title
             return headerView
@@ -169,7 +174,9 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
             .store(in: &cancellables)
     }
 
-    func showError(_ error: Error) {
+    // MARK: Update UI
+
+    private func showError(_ error: Error) {
         errorLabel.isHidden = false
         errorLabel.text = error.localizedDescription
     }

@@ -1,19 +1,19 @@
 import Combine
 import UIKit
 
-struct ArtObjectCollectionViewItem: Hashable {
-    enum State: Hashable {
-        case standart(title: String, imageURL: URL?, number: String)
-        case loading
-        case loadingError
-    }
-    let id: String
-    let state: State
-}
-
 class ArtObjectCategoryView: UICollectionViewCell {
     enum Section {
         case main
+    }
+
+    struct Item: Hashable {
+        enum State: Hashable {
+            case standart(title: String, imageURL: URL?, number: String)
+            case loading
+            case loadingError
+        }
+        let id: String
+        let state: State
     }
 
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -25,7 +25,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
         return layout
     }()
     // swiftlint:disable implicitly_unwrapped_optional
-    private var dataSource: UICollectionViewDiffableDataSource<Section, ArtObjectCollectionViewItem>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     private var viewModel: (any ArtObjectCategoryViewModelProtocol)!
     // swiftlint:enable implicitly_unwrapped_optional
     private var cancellables = Set<AnyCancellable>()
@@ -47,6 +47,8 @@ class ArtObjectCategoryView: UICollectionViewCell {
             await viewModel.loadInitialData()
         }
     }
+
+    // MARK: Update UI
 
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -86,7 +88,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
 
     private func setupDataSource() {
         // swiftlint:disable line_length
-        dataSource = UICollectionViewDiffableDataSource<Section, ArtObjectCollectionViewItem>(collectionView: collectionView) {collectionView, indexPath, item -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {collectionView, indexPath, item in
             if item.state == .loading {
                 // swiftlint:disable:next force_cast
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCell", for: indexPath) as! LoadingCell
@@ -109,11 +111,13 @@ class ArtObjectCategoryView: UICollectionViewCell {
         // swiftlint:enable line_length
     }
 
+    // MARK: Update UI
+
     private func applySnapshot(items: [RijkArtObject]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ArtObjectCollectionViewItem>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items.map({
-            ArtObjectCollectionViewItem(
+            Item(
                 id: $0.objectNumber,
                 state: .standart(title: $0.title, imageURL: $0.headerImage.url, number: $0.objectNumber)
             )

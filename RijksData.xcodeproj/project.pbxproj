@@ -169,7 +169,7 @@
 			path = RijksDataUITests;
 			sourceTree = "<group>";
 		};
-		949FFC4D2C7EA2690068ED72 /* ArtObjectCategory */ = {
+		949FFC4D2C7EA2690068ED72 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				949FFC662C7FE5AA0068ED72 /* Views */,
@@ -177,7 +177,7 @@
 				949FFC4E2C7EA2910068ED72 /* ArtObjectCategoryView.swift */,
 				949FFC5A2C7F7EBD0068ED72 /* TwoRowGridLayout.swift */,
 			);
-			path = ArtObjectCategory;
+			path = Category;
 			sourceTree = "<group>";
 		};
 		949FFC5E2C7F83440068ED72 /* Models */ = {
@@ -190,14 +190,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		949FFC612C7F83810068ED72 /* ArtObjectCategories */ = {
+		949FFC612C7F83810068ED72 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				949FFC6B2C7FE6380068ED72 /* Views */,
 				949FFC522C7F2BE30068ED72 /* ArtObjectCategoriesViewModel.swift */,
 				944AC1EF2C7DDE9A00FA0DD4 /* ArtObjectCategoriesViewController.swift */,
 			);
-			path = ArtObjectCategories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		949FFC652C7FE5760068ED72 /* API */ = {
@@ -255,8 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				949FFC7C2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift */,
-				949FFC612C7F83810068ED72 /* ArtObjectCategories */,
-				949FFC4D2C7EA2690068ED72 /* ArtObjectCategory */,
+				949FFC612C7F83810068ED72 /* Categories */,
+				949FFC4D2C7EA2690068ED72 /* Category */,
 			);
 			path = ArtObjectsCollection;
 			sourceTree = "<group>";
