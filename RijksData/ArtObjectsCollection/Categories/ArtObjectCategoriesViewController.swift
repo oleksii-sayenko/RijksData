@@ -15,7 +15,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
     // swiftlint:disable implicitly_unwrapped_optional
     private var collectionView: UICollectionView!
     private var activityIndicator: UIActivityIndicatorView!
-    private var errorLabel: UILabel!
+    private var infoLabel: UILabel!
 
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
 
@@ -48,17 +48,16 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         setupCollectionView()
         setupActivityIndicator()
 
-        errorLabel = UILabel()
-        errorLabel.isHidden = true
-        errorLabel.numberOfLines = 2
-        view.addSubview(errorLabel)
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoLabel = UILabel()
+        view.addSubview(infoLabel)
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10), // TODO: Magic number
-            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        infoLabel.isHidden = true
+        infoLabel.numberOfLines = 2
+        infoLabel.textAlignment = .center
     }
 
     private func setupCollectionView() {
@@ -159,9 +158,12 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 self?.activityIndicator.isHidden = state != .initialLoading
-                self?.errorLabel.isHidden = true
+                self?.infoLabel.isHidden = true
                 if case let .initialLoadingError(error) = state {
                     self?.showError(error)
+                }
+                if case .empty = state {
+                    self?.showEmptyState()
                 }
             }
             .store(in: &cancellables)
@@ -170,8 +172,13 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
     // MARK: Update UI
 
     private func showError(_ error: Error) {
-        errorLabel.isHidden = false
-        errorLabel.text = error.localizedDescription
+        infoLabel.isHidden = false
+        infoLabel.text = error.localizedDescription
+    }
+
+    private func showEmptyState() {
+        infoLabel.isHidden = false
+        infoLabel.text = "📭\nNo objects"
     }
 
     private func applySnapshot(sections: [any ArtObjectCategoryViewModelProtocol]) {

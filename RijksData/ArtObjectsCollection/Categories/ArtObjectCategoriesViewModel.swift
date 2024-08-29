@@ -25,6 +25,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         case readyForLoadMore
         case loading
         case loaded
+        case empty
     }
     private var collection: RijksCollection = .init(artObjects: [], facets: [])
     @Published private(set) var items: [any ArtObjectCategoryViewModelProtocol] = []
@@ -54,7 +55,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
             return
         }
 
-        guard state != .loading && state != .loaded else {
+        guard state != .loading, state != .loaded, state != .empty else {
             return
         }
 
@@ -96,7 +97,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
 
         do {
             collection = try await requestManager.perform(request)
-            state = .readyForLoadMore
+            state = collection.techniques.isEmpty ? .empty : .readyForLoadMore
             await loadMoreData()
         } catch {
             state = .initialLoadingError(error)
@@ -118,7 +119,8 @@ extension ArtObjectCategoriesViewModel.State: Equatable {
             (.readyForLoadMore, .readyForLoadMore),
             (.loading, .loading),
             (.loaded, .loaded),
-            (.initialLoadingError, .initialLoadingError):
+            (.initialLoadingError, .initialLoadingError),
+            (.empty, .empty):
             return true
         default:
             return false

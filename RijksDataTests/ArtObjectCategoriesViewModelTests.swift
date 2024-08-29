@@ -30,7 +30,7 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
             .initialLoading,
             .readyForLoadMore,
             .loading,
-            .loaded
+            .readyForLoadMore
         ]
 
         var receivedStates = [ArtObjectCategoriesViewModel.State]()
@@ -46,7 +46,7 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        requestManager.result = RijksCollection(artObjects: [], facets: [.init(facets: [.init(key: "painting", value: 10)], name: "techniq")])
+        requestManager.result = RijksCollection(artObjects: [], facets: [.init(facets: [.init(key: "painting", value: 10)], name: "technique")])
 
         await viewModel.loadInitialData()
 
@@ -54,13 +54,11 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
     }
 
     @MainActor
-    func test_statePublisher_onlyOnePage_emitsCorrectStates() async {
+    func test_statePublisher_noObjects_emitsCorrectStates() async {
         let expectedStates: [ArtObjectCategoriesViewModel.State] = [
             .initial,
             .initialLoading,
-            .readyForLoadMore,
-            .loading,
-            .loaded
+            .empty
         ]
 
         var receivedStates = [ArtObjectCategoriesViewModel.State]()
@@ -76,7 +74,7 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        requestManager.result = RijksCollection(artObjects: [], facets: [.init(facets: [.init(key: "painting", value: 10)], name: "techniq")])
+        requestManager.result = RijksCollection(artObjects: [], facets: [])
 
         await viewModel.loadMoreData()
         await viewModel.loadMoreData()
