@@ -2,6 +2,7 @@ import UIKit
 
 class ArtObjectsCollectionCoordinator {
     var navigationController: UINavigationController
+    var detailCoordinator: ArtObjectDetailCoordinator?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -21,7 +22,7 @@ class ArtObjectsCollectionCoordinator {
     @MainActor
     func openDetails(for id: RijkArtObject.ID) {
         detailCoordinator = ArtObjectDetailCoordinator(navigationController: navigationController)
-        detailCoordinator?.start(for: "", in: ["", ""])
+        detailCoordinator?.start(for: id)
     }
 }
 

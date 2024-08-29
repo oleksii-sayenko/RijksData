@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94233B062C808736004C6CD3 /* ArtObjectDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B052C808736004C6CD3 /* ArtObjectDetailCoordinator.swift */; };
+		94233B092C808E36004C6CD3 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B082C808E36004C6CD3 /* ID.swift */; };
+		94233B0B2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */; };
+		94233B0D2C809527004C6CD3 /* RijkArtObjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */; };
 		944AC1EC2C7DDE9A00FA0DD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1EB2C7DDE9A00FA0DD4 /* AppDelegate.swift */; };
 		944AC1EE2C7DDE9A00FA0DD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1ED2C7DDE9A00FA0DD4 /* SceneDelegate.swift */; };
 		944AC1F02C7DDE9A00FA0DD4 /* ArtObjectCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944AC1EF2C7DDE9A00FA0DD4 /* ArtObjectCategoriesViewController.swift */; };
@@ -54,6 +58,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94233B052C808736004C6CD3 /* ArtObjectDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailCoordinator.swift; sourceTree = "<group>"; };
+		94233B082C808E36004C6CD3 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
+		94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewModel.swift; sourceTree = "<group>"; };
+		94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijkArtObjectDetail.swift; sourceTree = "<group>"; };
 		944AC1E82C7DDE9A00FA0DD4 /* RijksData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RijksData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944AC1EB2C7DDE9A00FA0DD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944AC1ED2C7DDE9A00FA0DD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 				949FFC652C7FE5760068ED72 /* API */,
 				949FFC542C7F3C810068ED72 /* RijksCollection.swift */,
 				949FFC5F2C7F834B0068ED72 /* RijkArtObject.swift */,
+				94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +282,8 @@
 		949FFC7E2C8015340068ED72 /* ArtObjectDetails */ = {
 			isa = PBXGroup;
 			children = (
+				94233B052C808736004C6CD3 /* ArtObjectDetailCoordinator.swift */,
+				94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */,
 				949FFC7F2C8015500068ED72 /* ArtObjectDetailViewController.swift */,
 			);
 			path = ArtObjectDetails;
@@ -429,12 +440,16 @@
 				949FFC5D2C7F7EF70068ED72 /* ArtObjectItemCell.swift in Sources */,
 				949FFC802C8015500068ED72 /* ArtObjectDetailViewController.swift in Sources */,
 				949FFC602C7F834B0068ED72 /* RijkArtObject.swift in Sources */,
+				94233B092C808E36004C6CD3 /* ID.swift in Sources */,
+				94233B0D2C809527004C6CD3 /* RijkArtObjectDetail.swift in Sources */,
 				949FFC6E2C7FEBE50068ED72 /* AppConfiguration.swift in Sources */,
 				949FFC752C7FED6B0068ED72 /* ServiceProvider.swift in Sources */,
 				949FFC7D2C800D300068ED72 /* ArtObjectsCollectionCoordinator.swift in Sources */,
+				94233B062C808736004C6CD3 /* ArtObjectDetailCoordinator.swift in Sources */,
 				944AC1EC2C7DDE9A00FA0DD4 /* AppDelegate.swift in Sources */,
 				944AC1EE2C7DDE9A00FA0DD4 /* SceneDelegate.swift in Sources */,
 				949FFC4F2C7EA2910068ED72 /* ArtObjectCategoryView.swift in Sources */,
+				94233B0B2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift in Sources */,
 				949FFC6A2C7FE6000068ED72 /* TryAgainCell.swift in Sources */,
 				949FFC552C7F3C810068ED72 /* RijksCollection.swift in Sources */,
 			);

@@ -11,7 +11,7 @@ struct RijkArtObject: Codable {
     let headerImage: WebImage
 
     var id: ID {
-        ID(id: objectNumber)
+        ID(value: objectNumber)
     }
 
     // swiftlint:disable:next type_name

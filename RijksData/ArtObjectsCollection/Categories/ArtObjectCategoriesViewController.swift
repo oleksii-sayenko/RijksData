@@ -34,12 +34,6 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupUI()
-    }
-
     func configure(with viewModel: ArtObjectCategoriesViewModelProtocol) {
         self.viewModel = viewModel
         setupBindings()

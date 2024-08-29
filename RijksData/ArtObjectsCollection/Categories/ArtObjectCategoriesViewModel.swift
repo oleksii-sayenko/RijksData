@@ -95,7 +95,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         ) // TODO: looks no so good
 
         do {
-            collection = try await self.requestManager.perform(request)
+            collection = try await requestManager.perform(request)
             state = .readyForLoadMore
             await loadMoreData()
         } catch {
@@ -117,9 +117,8 @@ extension ArtObjectCategoriesViewModel.State: Equatable {
             (.initialLoading, .initialLoading),
             (.readyForLoadMore, .readyForLoadMore),
             (.loading, .loading),
-            (.loaded, .loaded):
-            return true
-        case (.initialLoadingError, .initialLoadingError):
+            (.loaded, .loaded),
+            (.initialLoadingError, .initialLoadingError):
             return true
         default:
             return false
