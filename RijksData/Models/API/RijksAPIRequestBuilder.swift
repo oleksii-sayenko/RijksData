@@ -8,7 +8,7 @@ enum RijksRequestCulture: String {
     case nl
 }
 
-public class RijksAPIRequestBuilder: APIRequestBuilderProtocol {
+public final class RijksAPIRequestBuilder: APIRequestBuilderProtocol {
     private let apiRequestBuilder: APIRequestBuilder
 
     init(host: URL, apiKey: String, culture: RijksRequestCulture, logger: Logger? = nil) {

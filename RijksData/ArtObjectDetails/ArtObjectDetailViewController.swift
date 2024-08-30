@@ -175,4 +175,3 @@ extension ArtObjectDetailViewController {
         static let errorHeader = "⚠️\nError occured"
     }
 }
-
