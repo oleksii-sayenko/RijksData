@@ -3,7 +3,7 @@
 Create a file named `Config.xcconfig` inside the `RijksData` folder with the following content:
 
 ``` 
-API_BASE_URL = https://www.rijksmuseum.nl/api 
+API_BASE_URL = https:/$()/www.rijksmuseum.nl/api
 API_KEY = your-api-key
 ```
 
