@@ -17,7 +17,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:RijksData.xcodeproj",
         "identifier" : "944AC1FD2C7DDE9B00FA0DD4",
