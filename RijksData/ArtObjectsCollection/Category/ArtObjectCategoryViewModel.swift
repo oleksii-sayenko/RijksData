@@ -3,7 +3,7 @@ import Combine
 import NetworkCore
 
 @MainActor
-protocol ArtObjectCategoryViewModelProtocol: AnyObject, Hashable, Sendable {
+protocol ArtObjectCategoryViewModelProtocol: AnyObject, Sendable {
     nonisolated var id: String { get }
     var title: String { get }
     var items: [RijkArtObject] { get }
@@ -28,14 +28,16 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
         case loadingError
     }
 
-    @Published private(set) var items: [RijkArtObject] = []
+    private(set) var items: [RijkArtObject] = []
     var itemsPublisher: AnyPublisher<[RijkArtObject], Never> {
-        $items.eraseToAnyPublisher()
+        itemsSubject.eraseToAnyPublisher()
     }
     @Published private(set) var state: ArtObjectCategoryViewModel.State = .initial
     var statePublisher: AnyPublisher<ArtObjectCategoryViewModel.State, Never> {
         $state.eraseToAnyPublisher()
     }
+
+    private let itemsSubject = CurrentValueSubject<[RijkArtObject], Never>([])
 
     private let requestManager: APIRequestManagerProtocol
     weak var delegate: ArtObjectCategoryViewModelDelegate?
@@ -51,6 +53,9 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
         self.maker = maker
         self.technique = technique
         self.id = technique
+        Task {
+            await loadMoreData()
+        }
     }
 
     var title: String {
@@ -74,13 +79,12 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
 
         do {
             let result: RijksCollection = try await requestManager.perform(request)
+            itemsSubject.send(itemsSubject.value + result.artObjects)
             self.items.append(contentsOf: result.artObjects)
 
-            if result.artObjects.isEmpty {
-                self.state = .loaded
-            } else {
-                self.state = .initial
-            }
+            self.state = result.artObjects.isEmpty
+                ? .loaded
+                : .initial
         } catch {
             self.state = .loadingError
             self.page -= 1
@@ -89,14 +93,5 @@ final class ArtObjectCategoryViewModel: ArtObjectCategoryViewModelProtocol {
 
     func ojectDidSelect(_ id: RijkArtObject.ID) {
         delegate?.objectDidSlect(id)
-    }
-}
-
-extension ArtObjectCategoryViewModel: Hashable {
-    nonisolated func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    nonisolated static func == (lhs: ArtObjectCategoryViewModel, rhs: ArtObjectCategoryViewModel) -> Bool {
-        lhs.id == rhs.id
     }
 }

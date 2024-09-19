@@ -26,7 +26,7 @@ class ArtObjectCategoryView: UICollectionViewCell {
     }()
     // swiftlint:disable implicitly_unwrapped_optional
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    private var viewModel: (any ArtObjectCategoryViewModelProtocol)!
+    private var viewModel: (ArtObjectCategoryViewModelProtocol)!
     // swiftlint:enable implicitly_unwrapped_optional
     private var cancellables = Set<AnyCancellable>()
 
@@ -40,12 +40,9 @@ class ArtObjectCategoryView: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with viewModel: any ArtObjectCategoryViewModelProtocol) {
+    func configure(with viewModel: ArtObjectCategoryViewModelProtocol) {
         self.viewModel = viewModel
         setupBindings()
-        Task {
-            await viewModel.loadMoreData()
-        }
     }
 
     // MARK: Update UI
@@ -70,6 +67,10 @@ class ArtObjectCategoryView: UICollectionViewCell {
         ])
     }
 
+    override func prepareForReuse() {
+        cancellables.removeAll()
+        collectionView.contentOffset = .zero
+    }
     private func setupBindings() {
         viewModel.itemsPublisher
             .receive(on: DispatchQueue.main)

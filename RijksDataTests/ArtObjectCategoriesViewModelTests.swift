@@ -48,7 +48,7 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
 
         requestManager.result = RijksCollection(artObjects: [], facets: [.init(facets: [.init(key: "painting", value: 10)], name: "technique")])
 
-        await viewModel.loadInitialData()
+        await viewModel.loadMoreData()
 
         await fulfillment(of: [expectation], timeout: 5.0)
     }
@@ -145,7 +145,7 @@ class ArtObjectCategoriesViewModelTests: XCTestCase {
 
         requestManager.error = NSError(domain: "TestError", code: 0, userInfo: nil)
 
-        await viewModel.loadInitialData()
+        await viewModel.loadMoreData()
 
         await fulfillment(of: [expectation], timeout: 5.0)
     }

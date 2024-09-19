@@ -5,11 +5,11 @@ import NetworkCore
 
 final class ArtObjectCategoriesViewController: UIViewController, UICollectionViewDelegate {
     enum Section {
-        case category(any ArtObjectCategoryViewModelProtocol)
+        case category(ArtObjectCategoryViewModelProtocol)
     }
 
     struct Item: Sendable {
-        let viewModel: any ArtObjectCategoryViewModelProtocol
+        let viewModel: ArtObjectCategoryViewModelProtocol
     }
 
     // swiftlint:disable implicitly_unwrapped_optional
@@ -181,7 +181,7 @@ final class ArtObjectCategoriesViewController: UIViewController, UICollectionVie
         infoLabel.text = "📭\nNo objects"
     }
 
-    private func applySnapshot(sections: [any ArtObjectCategoryViewModelProtocol]) {
+    private func applySnapshot(sections: [ArtObjectCategoryViewModelProtocol]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
 
         sections.forEach { sectionModel in

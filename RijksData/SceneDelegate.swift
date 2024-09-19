@@ -21,11 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator = ArtObjectsCollectionCoordinator(navigationController: navigationController)
         appCoordinator?.start()
 
-//        let viewController = ArtObjectCategoriesViewController()
-//        let requestManager = ServiceProvider.shared.apiRequestManager
-//        let viewModel = ArtObjectCategoriesViewModel(requestManager: requestManager, maker: "Rembrandt van Rijn")
-//        viewController.configure(with: viewModel)
-
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

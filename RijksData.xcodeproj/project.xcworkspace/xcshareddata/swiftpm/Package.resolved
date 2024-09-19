@@ -1,5 +1,5 @@
 {
-  "originHash" : "c4935cc314f743a2521dfb5411f14f7abca3c19b173b7b73eefdab2b21b5e505",
+  "originHash" : "66f7cb29201787ad2073df1a2b5884dc58b49c8dd67af4c9f0ef7f58dc251c3f",
   "pins" : [
     {
       "identity" : "collectionconcurrencykit",
@@ -58,7 +58,7 @@
     {
       "identity" : "swiftlint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/SwiftLint.git",
+      "location" : "https://github.com/realm/Swiftlint.git",
       "state" : {
         "revision" : "f17a4f9dfb6a6afb0408426354e4180daaf49cee",
         "version" : "0.54.0"

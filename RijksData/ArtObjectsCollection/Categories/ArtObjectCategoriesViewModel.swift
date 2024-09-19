@@ -5,8 +5,8 @@ import NetworkCore
 
 @MainActor
 protocol ArtObjectCategoriesViewModelProtocol {
-    var items: [any ArtObjectCategoryViewModelProtocol] { get }
-    var itemsPublisher: AnyPublisher<[any ArtObjectCategoryViewModelProtocol], Never> { get }
+    var items: [ArtObjectCategoryViewModelProtocol] { get }
+    var itemsPublisher: AnyPublisher<[ArtObjectCategoryViewModelProtocol], Never> { get }
     var statePublisher: AnyPublisher<ArtObjectCategoriesViewModel.State, Never> { get }
     func loadMoreData() async
 }
@@ -28,8 +28,8 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         case empty
     }
     private var collection: RijksCollection = .init(artObjects: [], facets: [])
-    @Published private(set) var items: [any ArtObjectCategoryViewModelProtocol] = []
-    var itemsPublisher: AnyPublisher<[any ArtObjectCategoryViewModelProtocol], Never> {
+    @Published private(set) var items: [ArtObjectCategoryViewModelProtocol] = []
+    var itemsPublisher: AnyPublisher<[ArtObjectCategoryViewModelProtocol], Never> {
         $items.eraseToAnyPublisher()
     }
     @Published private(set) var state: ArtObjectCategoriesViewModel.State = .initial
@@ -81,7 +81,7 @@ final class ArtObjectCategoriesViewModel: ArtObjectCategoriesViewModelProtocol {
         state = .readyForLoadMore
     }
 
-    func loadInitialData() async {
+    private func loadInitialData() async {
         guard state == .initial else {
             return
         }

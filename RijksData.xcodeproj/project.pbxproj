@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		94233B062C808736004C6CD3 /* ArtObjectDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B052C808736004C6CD3 /* ArtObjectDetailCoordinator.swift */; };
-		94233B092C808E36004C6CD3 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B082C808E36004C6CD3 /* ID.swift */; };
+		94233B092C808E36004C6CD3 /* PhantomId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B082C808E36004C6CD3 /* PhantomId.swift */; };
 		94233B0B2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */; };
 		94233B0D2C809527004C6CD3 /* RijkArtObjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */; };
 		94233B142C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94233B132C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift */; };
@@ -64,7 +64,7 @@
 
 /* Begin PBXFileReference section */
 		94233B052C808736004C6CD3 /* ArtObjectDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailCoordinator.swift; sourceTree = "<group>"; };
-		94233B082C808E36004C6CD3 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
+		94233B082C808E36004C6CD3 /* PhantomId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhantomId.swift; sourceTree = "<group>"; };
 		94233B0A2C8094BB004C6CD3 /* ArtObjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectDetailViewModel.swift; sourceTree = "<group>"; };
 		94233B0C2C809527004C6CD3 /* RijkArtObjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RijkArtObjectDetail.swift; sourceTree = "<group>"; };
 		94233B132C80C12A004C6CD3 /* ArtObjectsCollectionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectsCollectionCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		94233B072C808E2E004C6CD3 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				94233B082C808E36004C6CD3 /* ID.swift */,
+				94233B082C808E36004C6CD3 /* PhantomId.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				949FFC5D2C7F7EF70068ED72 /* ArtObjectItemCell.swift in Sources */,
 				949FFC802C8015500068ED72 /* ArtObjectDetailViewController.swift in Sources */,
 				949FFC602C7F834B0068ED72 /* RijkArtObject.swift in Sources */,
-				94233B092C808E36004C6CD3 /* ID.swift in Sources */,
+				94233B092C808E36004C6CD3 /* PhantomId.swift in Sources */,
 				94233B0D2C809527004C6CD3 /* RijkArtObjectDetail.swift in Sources */,
 				949FFC6E2C7FEBE50068ED72 /* AppConfiguration.swift in Sources */,
 				949FFC752C7FED6B0068ED72 /* ServiceProvider.swift in Sources */,
