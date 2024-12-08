@@ -1,0 +1,89 @@
+# Paths to ignore during linting. Takes precedence over `included`
+excluded:
+ - Pods
+ - Carthage
+ - DerivedData
+
+line_length:
+ ignores_comments: true
+ ignores_interpolated_strings: true
+ ignores_urls: true
+
+# Rule identifiers to exclude from running
+disabled_rules:
+ - nesting
+ - todo
+ - indentation_width
+ - switch_case_alignment
+
+# Opt-in rules are additional rules to enforce
+opt_in_rules:
+ - array_init
+ - comma_inheritance
+ - conditional_returns_on_newline
+ - contains_over_filter_count
+ - contains_over_filter_is_empty
+ - contains_over_first_not_nil
+ - contains_over_range_nil_comparison
+ - convenience_type
+ - discarded_notification_center_observer
+ - discouraged_object_literal
+ - empty_count
+ - empty_string
+ - enum_case_associated_values_count
+ - explicit_init
+ - fallthrough
+ - fatal_error_message
+ - first_where
+ - force_unwrapping
+ - identical_operands
+ - implicit_return
+ - implicitly_unwrapped_optional
+ - indentation_width
+ - joined_default_parameter
+ - last_where
+ - legacy_multiple
+ - legacy_objc_type
+ - literal_expression_end_indentation
+ - multiline_arguments
+ - multiline_arguments_brackets
+ - multiline_parameters_brackets
+ - multiline_function_chains
+ - multiline_parameters
+ - operator_usage_whitespace
+ - optional_enum_case_matching
+ - prefer_self_in_static_references
+ - private_action
+ - private_outlet
+ - private_subject
+ - private_swiftui_state
+ - redundant_nil_coalescing
+ - redundant_type_annotation
+ - return_value_from_void_function
+ - shorthand_optional_binding
+ - sorted_first_last
+ - static_operator
+ - strict_fileprivate
+ - switch_case_on_newline
+ - toggle_bool
+ - unneeded_parentheses_in_closure_argument
+ - unowned_variable_capture
+ - vertical_whitespace_closing_braces
+ - vertical_whitespace_opening_braces
+ - weak_delegate
+ - xct_specific_matcher
+
+# Analyzer rules are used to statically analyze code for specific patterns or issues
+analyzer_rules:
+ - capture_variable
+ - typesafe_array_init
+ - unused_declaration
+ - unused_import
+
+# If true, SwiftLint will treat all warnings as errors.
+#strict: false
+
+force_cast:
+    severity: warning
+
+reporter: "xcode"
